@@ -3,9 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <title>Friend Finder</title>
-
+ 
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://code.jquery.com/jquery.js"></script>
 
 </head>
 <body>
@@ -16,6 +18,7 @@
       <h1 class="text-center"> Friend Finder</h1>
       <hr>
       <h2 class="text-center">Take a small servay and find a friend.</h2>
+      <h2 class="text-center">Here we only ask the important questions in life.</h2>
       <br>
 
       <div class="text-center">
@@ -30,21 +33,17 @@
       </div>
     </footer>
 
-  </div>
-
-  <form>
-    <div class="form-group">
-        <label for="1q">The first generation of digimon the best generation</label>
-        <select class="form-control" id="1q">
-          <option>1</option>
-          <option>2</option>
-          <option>3</option>
-          <option>4</option>
-          <option>5</option>
-        </select>
-      </div>
+    <form>
       <div class="form-group">
-        <label for="1q"></label>
+        <label for="inputEmail1">Email address</label>
+        <input type="email" class="form-control" id="inputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+      </div>>
+
+      </div>
+    <hr>
+      <div class="form-group w-25">
+        <label for="1q">The first generation of digimon the best generation.</label>
         <select class="form-control" id="1q">
           <option>1</option>
           <option>2</option>
@@ -53,8 +52,118 @@
           <option>5</option>
         </select>
       </div>
-  </form>
+      <div class="form-group w-25">
+        <label for="2q">It is not important remember peoples names.</label>
+        <select class="form-control" id="2q">
+          <option>1</option>
+          <option>2</option>
+          <option>3</option>
+          <option>4</option>
+          <option>5</option>
+        </select>
+      </div>
+      <div class="form-group w-25">
+        <label for="3q">It is okay to fart in public.</label>
+        <select class="form-control" id="3a">
+          <option>1</option>
+          <option>2</option>
+          <option>3</option>
+          <option>4</option>
+          <option>5</option>
+        </select>
+      </div>
+      <div class="form-group w-25">
+        <label for="4q">Eating red meat is nessesary to live.</label>
+        <select class="form-control" id="4q">
+          <option>1</option>
+          <option>2</option>
+          <option>3</option>
+          <option>4</option>
+          <option>5</option>
+        </select>
+      </div>
+      <div class="form-group w-25">
+        <label for="5q">Vegetor was a good villan.</label>
+        <select class="form-control" id="5q">
+          <option>1</option>
+          <option>2</option>
+          <option>3</option>
+          <option>4</option>
+          <option>5</option>
+        </select>
+      </div>
+      <div class="form-group w-25">
+        <label for="6q">Hamburgers are better than burritos.</label>
+        <select class="form-control" id="6q">
+          <option>1</option>
+          <option>2</option>
+          <option>3</option>
+          <option>4</option>
+          <option>5</option>
+        </select>
+      </div>
+      <div class="form-group w-25">
+        <label for="7q">Everything in life can be solved with enough coconuts.</label>
+        <select class="form-control" id="7q">
+          <option>1</option>
+          <option>2</option>
+          <option>3</option>
+          <option>4</option>
+          <option>5</option>
+        </select>
+      </div>
+      <div class="form-group w-25">
+        <label for="8q">Lowbrow comedy is entertaining enough to engoy without an overlaying message.</label>
+        <select class="form-control" id="8q">
+          <option>1</option>
+          <option>2</option>
+          <option>3</option>
+          <option>4</option>
+          <option>5</option>
+        </select>
+      </div>
+      <div class="form-group w-25">
+        <label for="9q">Oblivion was way better than skyrim.</label>
+        <select class="form-control" id="9q">
+          <option>1</option>
+          <option>2</option>
+          <option>3</option>
+          <option>4</option>
+          <option>5</option>
+        </select>
+      </div>
+      <div class="form-group w-25">
+        <label for="10q">The entire pokemon society makes no sense.</label>
+        <select class="form-control" id="10q">
+          <option>1</option>
+          <option>2</option>
+          <option>3</option>
+          <option>4</option>
+          <option>5</option>
+        </select>
+      </div>
+      <hr>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>  
+  </div>
+  </body>
+  
+  <script type="text/javascript">
 
+  $(".btn-primary").on("click", function() {
+    event.preventDefault();
+    var newUser = {
+        name: $("#name").val().trim(),
+        scores: [$("#q1").val(), $("#q2").val(), $("#q3").val(), $("#q4").val(), $("#q5").val(), $("#q6").val(), $("#q7").val(), $("#q8").val(), $("#q9").val(), $("#q10").val() ]
+    };
+    $.post("/api/new", newUser)
+      .done(function(data) {
+          console.log(data);
+          $('#caption').text(data.name);
+          $('#imagepreview').attr('src', data.photo);
+          $('#imagemodal').modal('show');
+      });
+  
+  </script>
 
-</body>
-</html>
+  </html>
